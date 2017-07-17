@@ -1,0 +1,22 @@
+{
+  "name": "algorithmic-toolbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winfredselwyn/algorithmic-toolbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/winfredselwyn/algorithmic-toolbox/issues"
+  },
+  "homepage": "https://github.com/winfredselwyn/algorithmic-toolbox#readme",
+  "dependencies": {
+    "readline": "^1.3.0"
+  }
+}
