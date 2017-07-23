@@ -1,4 +1,6 @@
 # Uses python3
+import timeit
+
 def get_fibonacci(n):
 
   if n == 0 or n == 1:
@@ -16,11 +18,11 @@ def get_fibonacci(n):
     n_1 = res
     i += 1
 
-  return res
-
-def getLastNumber(n):
-    result = str(n)
-    return int(result[-1])
+  return res % 10
+#   new = str(res)
+#   return new[-1]
 
 n = int(input())
-print(getLastNumber(get_fibonacci(n)))
+start_time = timeit.default_timer()
+print(get_fibonacci(n))
+print(timeit.default_timer() - start_time)
