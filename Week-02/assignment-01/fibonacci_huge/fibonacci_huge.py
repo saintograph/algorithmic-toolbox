@@ -1,28 +1,44 @@
 # Uses python3
+# An algorithms to get larger Fibonacci numbers with the Q~Matrix
+
 import timeit
 
-def get_fibonacci(n):
+fib_matrix = [[1,1],
+              [1,0]]
 
-  if n == 0 or n == 1:
-    return n
+def matrix_square(A, mod):
+    return mat_mult(A,A,mod)
 
-  n_1 = 1
-  n_2 = 0
-  res = 0
+def mat_mult(A,B, mod):
+  if mod is not None:
+    return [[(A[0][0]*B[0][0] + A[0][1]*B[1][0])%mod, (A[0][0]*B[0][1] + A[0][1]*B[1][1])%mod],
+            [(A[1][0]*B[0][0] + A[1][1]*B[1][0])%mod, (A[1][0]*B[0][1] + A[1][1]*B[1][1])%mod]]
 
-  i = 2
-  while i <= n:
-    res = n_1 + n_2
+def matrix_pow(M, power, mod):
+    if power <= 0:
+      return M
 
-    n_2 = n_1
-    n_1 = res
-    i += 1
+    powers =  list(reversed([True if i=="1" else False for i in bin(power)[2:]]))
 
-  return res % 10
-#   new = str(res)
-#   return new[-1]
+    matrices = [None for _ in powers]
+    matrices[0] = M
+
+    for i in range(1,len(powers)):
+        matrices[i] = matrix_square(matrices[i-1], mod)
+
+
+    result = None
+
+    for matrix, power in zip(matrices, powers):
+        if power:
+            if result is None:
+                result = matrix
+            else:
+                result = mat_mult(result, matrix, mod)
+
+    return result
 
 n = int(input())
-start_time = timeit.default_timer()
-print(get_fibonacci(n))
-print(timeit.default_timer() - start_time)
+# start_time = timeit.default_timer()
+print(matrix_pow(fib_matrix, n, 10)[0][1])
+# print(timeit.default_timer() - start_time)
