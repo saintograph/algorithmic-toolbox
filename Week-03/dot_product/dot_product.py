@@ -2,6 +2,7 @@
 
 import sys
 
+
 def max_dot_product(a, b):
     #write your code here
     res = 0
